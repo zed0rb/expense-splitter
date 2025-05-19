@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Backend.DTOs.Requests;
 using Backend.DTOs.Responses;
 using Backend.Services;
 using Backend.Models;
+using Backend.Mapping;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers
@@ -24,7 +26,7 @@ namespace Backend.Controllers
         public async Task<ActionResult<List<TransactionResponse>>> GetTransactions(Guid groupId)
         {
             var transactions = await _transactionService.GetTransactions(groupId);
-            return Ok(transactions.Select(MapToResponse));
+            return Ok(transactions.Select(TransactionMapper.MapToResponse));
         }
 
         [HttpPost]
@@ -34,7 +36,7 @@ namespace Backend.Controllers
             try
             {
                 var transaction = await _transactionService.CreateTransaction(groupId, request);
-                var response = MapToResponse(transaction);
+                var response = TransactionMapper.MapToResponse(transaction);
                 return CreatedAtAction(
                     nameof(GetTransactions),
                     new { groupId = groupId },
@@ -44,29 +46,6 @@ namespace Backend.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        private TransactionResponse MapToResponse(Transaction transaction)
-        {
-            return new TransactionResponse
-            {
-                Id = transaction.Id,
-                Amount = transaction.Amount,
-                Description = transaction.Description,
-                Date = transaction.Date,
-                PaidBy = new MemberResponse
-                {
-                    Id = transaction.PaidById,
-                    Name = transaction.PaidBy.Name,
-                    IsCreator = false
-                },
-                Splits = transaction.Splits.Select(s => new SplitDetail
-                {
-                    MemberId = s.MemberId,
-                    MemberName = s.Member.Name,
-                    Amount = s.Amount
-                }).ToList()
-            };
         }
     }
 }

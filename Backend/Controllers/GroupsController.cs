@@ -13,12 +13,12 @@ namespace Backend.Controllers
     public class GroupsController : ControllerBase
     {
         private readonly IGroupService _groupService;
-        private readonly ITransactionService _transactionService; // Add this field
+        private readonly ITransactionService _transactionService;
 
-        public GroupsController(IGroupService groupService, ITransactionService transactionService) // Add parameter
+        public GroupsController(IGroupService groupService, ITransactionService transactionService)
         {
             _groupService = groupService;
-            _transactionService = transactionService; // Initialize the field
+            _transactionService = transactionService;
         }
 
         [HttpGet]

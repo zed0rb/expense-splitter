@@ -18,7 +18,7 @@ namespace Backend.DTOs.Responses
         public Guid MemberId { get; set; }
         public string MemberName { get; set; } = string.Empty;
         public decimal Amount { get; set; }
-        public decimal Owes { get; set; }  // How much this member owes
-        public decimal GetsBack { get; set; }  // How much this member gets back
+        public decimal Owes { get; set; }
+        public decimal GetsBack { get; set; }
     }
 }
