@@ -1,0 +1,24 @@
+﻿root = true
+
+[*.cs]
+# Basic C# style
+indent_size = 4
+indent_style = space
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# C# coding conventions
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_prefer_braces = when_multiline:warning
+
+# Naming rules (like PSR-4)
+dotnet_naming_rule.private_fields_should_be__lower.severity = suggestion
+dotnet_naming_rule.private_fields_should_be__lower.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be__lower.style = _lower_case_style
+
+# ASP.NET-specific rules
+dotnet_diagnostic.API1000.severity = warning # Prefer ActionResult<T>
+dotnet_diagnostic.ASP0016.severity = error   # Avoid sync-over-async

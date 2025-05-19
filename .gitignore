@@ -1,0 +1,23 @@
+﻿# JetBrains Rider/IDE
+.idea/
+*.user
+*.suo
+
+# Frontend (React/TypeScript)
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.env
+Frontend/.cache/
+Frontend/coverage/
+
+# Backend (ASP.NET)
+Backend/bin/
+Backend/obj/
+Backend/.vs/
+Backend/packages/
+Backend/*.csproj.user
+Backend/appsettings.Development.json
+
+# OS/Editor files
+.DS_Store
+Thumbs.db
